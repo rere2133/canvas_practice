@@ -5,16 +5,19 @@
       <router-link to="/basic">Basic Note</router-link> |
       <router-link to="/coordinate">Coordinate</router-link>
       <div class="flex gap-4 m-8">
-        <Basic class="galleryItem" />
-        <Coordinate class="galleryItem" />
+        <Basic @click="router.push('/basic')" class="galleryItem" />
+        <Coordinate @click="router.push('/coordinate')" class="galleryItem" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
 import Basic from "./Basic.vue";
 import Coordinate from "./Coordinate.vue";
+
+const router = useRouter();
 </script>
 
 <style scoped>
