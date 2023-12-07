@@ -148,10 +148,11 @@ const draw = () => {
   ctx.fill();
   ctx.stroke();
 
-  ctx.beginPath();
-  ctx.arc(mouse.value.x, mouse.value.y, 5, 0, 2 * Math.PI);
-  ctx.fillStyle = "black";
-  ctx.fill();
+  // Mouse
+  // ctx.beginPath();
+  // ctx.arc(mouse.value.x, mouse.value.y, 5, 0, 2 * Math.PI);
+  // ctx.fillStyle = "black";
+  // ctx.fill();
 };
 onMounted(() => {
   init();
