@@ -1,10 +1,11 @@
 <template>
   <div>
-    <canvas id="myCanvas" ref="myCanvas"></canvas>
+    <canvas class="myCanvas shadow-lg" ref="myCanvas"></canvas>
   </div>
 </template>
 
 <script setup>
+// 繪圖基礎語法 與動畫原理
 import { ref, onMounted } from "vue";
 const myCanvas = ref(null);
 let ctx = ref();
@@ -159,9 +160,4 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-#myCanvas {
-  border: 3px solid #000;
-  background-color: #fff;
-}
-</style>
+<style scoped></style>

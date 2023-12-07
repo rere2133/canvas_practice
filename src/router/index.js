@@ -7,9 +7,14 @@ const routes = [
     component: () => import('@/views/Home.vue')
   },
   {
-    path: '/canvas',
-    name: 'Canvas',
-    component: () => import('@/views/Canvas.vue')
+    path: '/basic',
+    name: 'Basic',
+    component: () => import('@/views/Basic.vue')
+  },
+  {
+    path: '/coordinate',
+    name: 'Coordinate',
+    component: () => import('@/views/Coordinate.vue')
   },
 ]
 
