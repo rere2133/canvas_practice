@@ -8,6 +8,8 @@
 - [ ] Vector 向量的概念
 - [ ] 製作橫衝直撞的貪吃蛇
 
+## [👉 Demo](https://canvas-learn-ad6f0.web.app/)
+
 ## Getting Started
 
 ```bash
