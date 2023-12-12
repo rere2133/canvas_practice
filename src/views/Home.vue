@@ -4,6 +4,8 @@
     <div class="min-h-[200px] p-4">
       <router-link to="/basic">Basic Note</router-link> |
       <router-link to="/coordinate">Coordinate</router-link>
+      |
+      <router-link to="/acceleration">Acceleration</router-link>
       <div class="flex gap-4 m-8">
         <Basic @click="router.push('/basic')" class="galleryItem" />
         <Coordinate @click="router.push('/coordinate')" class="galleryItem" />

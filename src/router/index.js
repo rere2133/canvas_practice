@@ -16,6 +16,11 @@ const routes = [
     name: 'Coordinate',
     component: () => import('@/views/Coordinate.vue')
   },
+  {
+    path: '/acceleration',
+    name: 'Acceleration',
+    component: () => import('@/views/Acceleration.vue')
+  },
 ]
 
 const router = createRouter({
