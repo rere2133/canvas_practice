@@ -5,9 +5,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, onUnmounted, watch } from "vue";
 import { useBall } from "@/composables/useBall";
 import { useHelper } from "@/composables/useHelper";
+import { useRoute } from "vue-router";
+
+const { name } = useRoute();
+
 const myCanvas = ref(null);
 let ctx = ref();
 const ww = computed(() => window.innerWidth);
@@ -82,6 +86,25 @@ onMounted(() => {
   draw();
   setInterval(update, 1000 / 30);
 });
+onUnmounted(() => {
+  console.log("un");
+  clearInterval(update);
+  _useBall.closeGui();
+});
+
+watch(
+  () => name,
+  (val) => {
+    if (val == "Acceleration") {
+      _useBall.initGui();
+    } else {
+      _useBall.closeGui();
+    }
+  },
+  {
+    immediate: true,
+  }
+);
 </script>
 
 <style scoped>

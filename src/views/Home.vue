@@ -9,6 +9,10 @@
       <div class="flex gap-4 m-8">
         <Basic @click="router.push('/basic')" class="galleryItem" />
         <Coordinate @click="router.push('/coordinate')" class="galleryItem" />
+        <Acceleration
+          @click="router.push('/acceleration')"
+          class="galleryItem"
+        />
       </div>
     </div>
   </div>
@@ -18,6 +22,7 @@
 import { useRouter } from "vue-router";
 import Basic from "./Basic.vue";
 import Coordinate from "./Coordinate.vue";
+import Acceleration from "./Acceleration.vue";
 
 const router = useRouter();
 </script>

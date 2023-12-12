@@ -1,4 +1,5 @@
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
 import * as dat from 'dat.gui';
 
 export function useBall() {
@@ -20,8 +21,6 @@ export function useBall() {
   const r = ref(50)
   const dragging = ref(false)
 
-  /* dat.gui */
-  const gui = new dat.GUI()
   const controls = ref({
     vx: 0,
     vy: 0,
@@ -32,20 +31,29 @@ export function useBall() {
     step: () => update(),
     FPS: 30
   })
-  gui.add(controls.value, "vx", -50, 50).listen().onChange((value) => {
-    v.value.x = value
-  })
-  gui.add(controls.value, "vy", -50, 50).listen().onChange((value) => {
-    v.value.y = value
-  })
-  gui.add(controls.value, "ay", -1, 1).step(0.001).listen().onChange((value) => {
-    a.value.y = value
-  })
-  gui.add(controls.value, "fade", 0, 1).step(0.01).listen()
-  gui.add(controls.value, "update")
-  gui.addColor(controls.value, "color")
-  gui.add(controls.value, "step")
-  gui.add(controls.value, "FPS", 1, 120)
+  let controller
+  /* dat.gui */
+  const gui = new dat.GUI()
+  const initGui = () => {
+    gui.add(controls.value, "vx", -50, 50).listen().onChange((value) => {
+      v.value.x = value
+    })
+    gui.add(controls.value, "vy", -50, 50).listen().onChange((value) => {
+      v.value.y = value
+    })
+    gui.add(controls.value, "ay", -1, 1).step(0.001).listen().onChange((value) => {
+      a.value.y = value
+    })
+    gui.add(controls.value, "fade", 0, 1).step(0.01).listen()
+    gui.add(controls.value, "update")
+    gui.addColor(controls.value, "color")
+    gui.add(controls.value, "step")
+    gui.add(controls.value, "FPS", 1, 120)
+  }
+  const closeGui = () => {
+    gui.hide()
+  }
+
 
   const draw = (ctx) => {
     ctx.beginPath()
@@ -116,6 +124,18 @@ export function useBall() {
       v.value.y = Math.abs(v.value.y)
     }
   }
+  // const { name } = useRoute()
+  // watch(() => name, (val) => {
+  //   if (val == 'Acceleration') {
+  //     console.log('jhi');
+  //     initGui()
+  //   } else {
+  //     console.log('hji');
+  //     // closeGui()
+  //   }
+  // }, {
+  //   immediate: true
+  // })
 
   return {
     p,
@@ -124,6 +144,8 @@ export function useBall() {
     dragging,
     draw,
     update,
-    controls
+    controls,
+    initGui,
+    closeGui
   }
 }
