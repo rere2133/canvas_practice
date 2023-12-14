@@ -21,6 +21,11 @@ const routes = [
     name: 'Acceleration',
     component: () => import('@/views/Acceleration.vue')
   },
+  {
+    path: '/vector',
+    name: 'Vector',
+    component: () => import('@/views/Vector.vue')
+  },
 ]
 
 const router = createRouter({

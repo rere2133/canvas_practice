@@ -1,11 +1,14 @@
 <template>
   <div>
-    <h1 class="text-5xl">Home Page</h1>
+    <h1 class="text-5xl">My Canvas</h1>
     <div class="min-h-[200px] p-4">
-      <router-link to="/basic">Basic Note</router-link> |
-      <router-link to="/coordinate">Coordinate</router-link>
-      |
-      <router-link to="/acceleration">Acceleration</router-link>
+      <div class="max-w-[300px] mx-auto">
+        <router-link to="/basic">Basic Note</router-link> |
+        <router-link to="/coordinate">Coordinate</router-link> |
+        <router-link to="/acceleration">Acceleration</router-link> |
+        <router-link to="/vector">Vector</router-link>
+      </div>
+
       <div class="flex gap-4 m-8">
         <Basic @click="router.push('/basic')" class="galleryItem" />
         <Coordinate @click="router.push('/coordinate')" class="galleryItem" />
