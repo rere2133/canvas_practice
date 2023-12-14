@@ -23,6 +23,21 @@ const init = () => {
   // });
 };
 const draw = () => {
+  let a = new Vector(4, 0);
+  let b = new Vector(0, 3);
+  let c = a.add(b);
+  let d = a.sub(b);
+  console.log(`${a}+${b}=${c}`);
+  console.log(`${a}-${b}=${d}`);
+  let b2 = b.mul(2);
+  console.log(`${b}*2=${b2}`);
+  console.log(`${c} length: ${c.length()}`);
+  d.set(0, 6);
+  console.log(b2.equal(d));
+  let newa = a.clone();
+  newa.move(3, 4);
+  console.log(newa, a);
+
   // time.value += 1;
   // ctx.clearRect(0, 0, 400, 400);
 };
