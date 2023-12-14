@@ -35,3 +35,4 @@ const router = useRouter();
   @apply max-w-[200px] h-fit shadow-lg;
 }
 </style>
+g
