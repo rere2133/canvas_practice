@@ -16,10 +16,15 @@ const routes = [
     name: 'Coordinate',
     component: () => import('@/views/Coordinate.vue')
   },
+  // {
+  //   path: '/acceleration',
+  //   name: 'Acceleration',
+  //   component: () => import('@/views/Acceleration.vue')
+  // },
   {
     path: '/acceleration',
     name: 'Acceleration',
-    component: () => import('@/views/Acceleration.vue')
+    component: () => import('@/views/Acceleration_vector.vue')
   },
   {
     path: '/vector',
