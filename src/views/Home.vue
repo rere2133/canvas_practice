@@ -32,6 +32,7 @@ const router = useRouter();
 
 <style scoped>
 .galleryItem {
-  @apply max-w-[200px] shadow-lg;
+  @apply max-w-[200px] h-fit shadow-lg;
 }
 </style>
+g
