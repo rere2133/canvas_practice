@@ -31,6 +31,11 @@ const routes = [
     name: 'Vector',
     component: () => import('@/views/Vector.vue')
   },
+  {
+    path: '/snake',
+    name: 'Snake',
+    component: () => import('@/views/Snake.vue')
+  },
 ]
 
 const router = createRouter({

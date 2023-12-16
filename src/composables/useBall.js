@@ -3,7 +3,6 @@ import { useRoute } from "vue-router";
 import * as dat from 'dat.gui';
 
 export function useBall() {
-
   const ww = computed(() => window.innerWidth)
   const wh = computed(() => window.innerHeight)
   const p = ref({
