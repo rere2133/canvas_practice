@@ -6,7 +6,7 @@
     >
       <h2 class="text-5xl text-white mb-4">Score: {{ score }}</h2>
       <div
-        @click="startGame"
+        @click="startGame(ctx)"
         class="bg-black text-white border-2 py-1 px-3 border-white-100 max-w-[120px] text-sm rounded-full cursor-pointer hover:bg-slate-50 hover:text-slate-900"
       >
         Start Game
@@ -62,7 +62,7 @@ const handleKeydown = (e) => {
     setDirection(e.key.replace("Arrow", ""));
   }
   if (e.key == "Enter") {
-    startGame();
+    startGame(ctx);
   }
 };
 onMounted(() => {

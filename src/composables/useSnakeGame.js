@@ -59,14 +59,8 @@ export function useSnakeGame() {
     start: false
   })
   // 遊戲開始
-  const startGame = () => {
-    snake.value = {
-      body: [],
-      maxLength: 5,
-      head: new Vector(),
-      speed: new Vector(1, 0),
-      direction: 'Right'
-    }
+  const startGame = (ctx) => {
+    resetGame(ctx)
     game.value.start = true
     playSound('C#5', -10)
     playSound('E5', -10, 100)
@@ -78,6 +72,17 @@ export function useSnakeGame() {
     playSound('A3', -10)
     playSound('E2', -10, 200)
     playSound('A2', -10, 400)
+  }
+  const resetGame = (ctx) => {
+    snake.value = {
+      body: [],
+      maxLength: 5,
+      head: new Vector(),
+      speed: new Vector(1, 0),
+      direction: 'Right'
+    }
+    game.value.foods = []
+    generateFood(ctx)
   }
   // 尋找實際向量位置
   const getPosition = (x, y) => {
