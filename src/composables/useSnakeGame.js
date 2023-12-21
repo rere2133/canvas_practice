@@ -1,6 +1,7 @@
 import Vector from './useVector'
 import { ref } from 'vue'
 import * as Tone from 'tone'
+import { log } from 'tone/build/esm/core/util/Debug'
 
 export function useSnakeGame() {
   // Snake
@@ -59,12 +60,6 @@ export function useSnakeGame() {
   })
   // 遊戲開始
   const startGame = () => {
-    game.value.start = true
-  }
-  // 遊戲結束
-  const endGame = () => {
-    game.value.start = false
-    score.value = (snake.value.body.length - 5) * 10
     snake.value = {
       body: [],
       maxLength: 5,
@@ -72,6 +67,17 @@ export function useSnakeGame() {
       speed: new Vector(1, 0),
       direction: 'Right'
     }
+    game.value.start = true
+    playSound('C#5', -10)
+    playSound('E5', -10, 100)
+  }
+  // 遊戲結束
+  const endGame = () => {
+    score.value = (snake.value.body.length - 5) * 10
+    game.value.start = false
+    playSound('A3', -10)
+    playSound('E2', -10, 200)
+    playSound('A2', -10, 400)
   }
   // 尋找實際向量位置
   const getPosition = (x, y) => {
@@ -108,6 +114,9 @@ export function useSnakeGame() {
     let y = parseInt(Math.random() * game.value.gameWidth)
     game.value.foods.push(new Vector(x, y))
     drawEffect(ctx, x, y)
+    playSound('E5', -20)
+    playSound('A5', -20, 50)
+
   }
   // 音效
   const playSound = (note, volume, when) => {
@@ -138,7 +147,7 @@ export function useSnakeGame() {
 
   const update = (ctx) => {
     if (game.value.start) {
-      playSound('A2', -50)
+      playSound('A2', -30)
       snakeUpdate()
       // 蛇吃到食物
       game.value.foods.forEach((food, i) => {
@@ -158,10 +167,10 @@ export function useSnakeGame() {
       if (!checkBoundary()) endGame()
     }
 
-
+    let speed = Math.sqrt(snake.value.body.length) + 5
     setTimeout(() => {
       update(ctx)
-    }, 150)
+    }, parseInt(1000 / speed))
   }
   return {
     setDirection,
