@@ -31,7 +31,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import Vector from "@/composables/useVector";
 import { useSnakeGame } from "@/composables/useSnakeGame";
 const myCanvas = ref(null);
 let ctx = ref();
@@ -48,14 +47,6 @@ const init = () => {
   snakeGame.render(ctx, myCanvas.value.width, myCanvas.value.height);
   snakeGame.update(ctx);
   snakeGame.generateFood(ctx);
-  // myCanvas.value.addEventListener("mousemove", function (event) {
-  //   mouse.value.x = event.offsetX;
-  //   mouse.value.y = event.offsetY;
-  // });
-};
-const draw = () => {
-  // time.value += 1;
-  // ctx.clearRect(0, 0, 400, 400);
 };
 const handleKeydown = (e) => {
   if (e.key.indexOf("Arrow") != -1) {
@@ -67,8 +58,6 @@ const handleKeydown = (e) => {
 };
 onMounted(() => {
   init();
-  // setInterval(draw, 30);
-  draw();
   window.addEventListener("keydown", handleKeydown);
 });
 onUnmounted(() => {
