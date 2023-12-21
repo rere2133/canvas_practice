@@ -147,7 +147,7 @@ export function useSnakeGame() {
 
   const update = (ctx) => {
     if (game.value.start) {
-      playSound('A2', -30)
+      // playSound('A2', -30)
       snakeUpdate()
       // 蛇吃到食物
       game.value.foods.forEach((food, i) => {
