@@ -16,11 +16,6 @@ const routes = [
     name: 'Coordinate',
     component: () => import('@/views/Coordinate.vue')
   },
-  // {
-  //   path: '/acceleration',
-  //   name: 'Acceleration',
-  //   component: () => import('@/views/Acceleration.vue')
-  // },
   {
     path: '/acceleration',
     name: 'Acceleration',
@@ -35,6 +30,11 @@ const routes = [
     path: '/snake',
     name: 'Snake',
     component: () => import('@/views/Snake.vue')
+  },
+  {
+    path: '/template',
+    name: 'Template',
+    component: () => import('@/views/Template.vue')
   },
 ]
 

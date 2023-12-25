@@ -30,7 +30,6 @@ export function useBall() {
     step: () => update(),
     FPS: 30
   })
-  let controller
   /* dat.gui */
   const gui = new dat.GUI()
   const initGui = () => {

@@ -3,6 +3,11 @@ export default class Vector {
     this.x = x || 0
     this.y = y || 0
   }
+  set(x, y) {
+    this.x = x
+    this.y = y
+    return this
+  }
   move(x, y) {
     this.x += x
     this.y += y
@@ -17,13 +22,15 @@ export default class Vector {
   mul(s) {
     return new Vector(this.x * s, this.y * s)
   }
-  length() {
+  // length() {
+  //   return Math.sqrt(this.x * this.x + this.y * this.y)
+  // }
+  get length() {
     return Math.sqrt(this.x * this.x + this.y * this.y)
   }
-  set(x, y) {
-    this.x = x
-    this.y = y
-    return this
+  set length(newV) {
+    let newVec = this.unit.mul(newV)
+    this.set(newVec.x, newVec.y)
   }
   equal(v) {
     return this.x == v.x && this.y == v.y
@@ -31,8 +38,11 @@ export default class Vector {
   clone() {
     return new Vector(this.x, this.y)
   }
-  angle() {
+  get angle() {
     return Math.atan2(this.y, this.x)
+  }
+  get unit() {
+    return this.mul(1 / this.length)
   }
   toString() {
     return `(${this.x},${this.y})`

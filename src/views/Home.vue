@@ -34,6 +34,7 @@ const links = ref([
   { name: "Acceleration", path: "/acceleration" },
   { name: "Vector", path: "/vector" },
   { name: "Snake", path: "/snake" },
+  { name: "Template", path: "/template" },
 ]);
 </script>
 
