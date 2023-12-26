@@ -4,8 +4,11 @@
       v-if="!game.start"
       class="absolute flex justify-center items-center flex-col w-full h-[600px]"
     >
-      <h2 class="text-5xl text-white mb-4">Score: {{ score }}</h2>
+      <h2 v-if="path != '/'" class="text-5xl text-white mb-4">
+        Score: {{ score }}
+      </h2>
       <div
+        v-if="path != '/'"
         @click="startGame(ctx)"
         class="bg-black text-white border-2 py-1 px-3 border-white-100 max-w-[120px] text-sm rounded-full cursor-pointer hover:bg-slate-50 hover:text-slate-900"
       >
@@ -13,8 +16,7 @@
       </div>
     </div>
     <canvas class="myCanvas" ref="myCanvas"> </canvas>
-    <!-- For Test -->
-    <div class="mx-auto mt-5">
+    <div v-if="path != '/'" class="mx-auto mt-5">
       <div class="flex gap-2 mb-2 justify-center">
         <div class="btn opacity-0"></div>
         <div @click="setDirection('Up')" class="btn">↑</div>
@@ -32,6 +34,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { useSnakeGame } from "@/composables/useSnakeGame";
+import { useRoute } from "vue-router";
+
+const { path } = useRoute();
 const myCanvas = ref(null);
 let ctx = ref();
 const snakeGame = useSnakeGame();

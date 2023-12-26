@@ -32,6 +32,11 @@ const routes = [
     component: () => import('@/views/Snake.vue')
   },
   {
+    path: '/particle',
+    name: 'Particle',
+    component: () => import('@/views/Particle.vue')
+  },
+  {
     path: '/template',
     name: 'Template',
     component: () => import('@/views/Template.vue')

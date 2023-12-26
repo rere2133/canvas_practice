@@ -1,7 +1,6 @@
 import Vector from './useVector'
 import { ref } from 'vue'
 import * as Tone from 'tone'
-import { log } from 'tone/build/esm/core/util/Debug'
 
 export function useSnakeGame() {
   // Snake
