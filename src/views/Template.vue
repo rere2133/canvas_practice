@@ -9,7 +9,9 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import * as dat from "dat.gui";
 import Vector from "@/composables/useVector";
 import { useCanvas } from "@/composables/useCanvas";
+import { useRoute } from "vue-router";
 
+const { name } = useRoute();
 const myCanvas = ref(null);
 let ctx = ref(null);
 let _useCanvas = ref(null);
@@ -66,7 +68,7 @@ const mouseup = (e) => {
 
 // 邏輯初始化
 const init = () => {
-  initGui();
+  // initGui();
   initCanvas();
   initMouse();
   window.addEventListener("resize", initCanvas);
@@ -115,6 +117,19 @@ onMounted(() => {
 onUnmounted(() => {
   closeGui();
 });
+watch(
+  () => name,
+  (val) => {
+    if (val == "Home") {
+      closeGui();
+    } else {
+      initGui();
+    }
+  },
+  {
+    immediate: true,
+  }
+);
 </script>
 
 <style scoped></style>

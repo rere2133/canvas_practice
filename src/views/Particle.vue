@@ -5,12 +5,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from "vue";
+import { ref, onMounted, computed, onUnmounted, watch } from "vue";
 import * as dat from "dat.gui";
 import Vector from "@/composables/useVector";
-import { useCanvas } from "@/composables/useCanvas";
 import Particle from "../composables/useParticle";
+import { useCanvas } from "@/composables/useCanvas";
+import { useRoute } from "vue-router";
 
+const { name } = useRoute();
 const myCanvas = ref(null);
 let ctx = ref(null);
 let _useCanvas = ref(null);
@@ -30,12 +32,27 @@ const wh = computed(() => window.innerHeight);
 const controls = ref({
   value: 0,
   gcount: 3,
+  ay: 0.6,
+  fade: 0.95,
+  v: 10,
 });
 const gui = new dat.GUI();
 const initGui = () => {
   gui
-    .add(controls.value, "value", -2, 2)
-    .listen()
+    .add(controls.value, "gcount", 0, 30)
+    .step(1)
+    .onChange((value) => {});
+  gui
+    .add(controls.value, "ay", -1, 1)
+    .step(0.01)
+    .onChange((value) => {});
+  gui
+    .add(controls.value, "fade", 0, 1)
+    .step(0.01)
+    .onChange((value) => {});
+  gui
+    .add(controls.value, "v", 0, 30)
+    .step(0.01)
     .onChange((value) => {});
 };
 const closeGui = () => {
@@ -69,7 +86,7 @@ const mouseup = (e) => {
 
 // 邏輯初始化
 const init = () => {
-  initGui();
+  // initGui();
   initCanvas();
   initMouse();
   window.addEventListener("resize", initCanvas);
@@ -80,9 +97,21 @@ const update = () => {
     Array.from({ length: controls.value.gcount }, (d, idx) => {
       return new Particle(ctx, {
         p: mousePos.value.clone(),
+        v: new Vector(
+          Math.random() * controls.value.v - controls.value.v / 2,
+          Math.random() * controls.value.v - controls.value.v / 2
+        ),
+        r: Math.random() * 20,
+        color: `rgb(${parseInt(Math.random() * 255)},${parseInt(
+          Math.random() * 255
+        )},255`,
       });
     })
   );
+  particles.value.forEach((el) => {
+    el.update(controls.value);
+  });
+  particles.value = particles.value.filter((p) => p.r > 0.1);
 };
 // 畫面更新
 const draw = () => {
@@ -94,24 +123,8 @@ const draw = () => {
   // 在這裡繪製
 
   particles.value.forEach((el) => {
-    el.draw(ctx);
+    el.draw();
   });
-
-  // ctx.save();
-  // ctx.translate(mousePos.value.x, mousePos.value.y);
-
-  // ctx.beginPath();
-  // ctx.arc(0, 0, 10, 0, Math.PI * 2);
-  // ctx.fillStyle = "#fff";
-  // // _useCanvas.circle(mousePos.value, 10);
-
-  // ctx.fill();
-
-  // // ctx.fillStyle = "red";
-  // // _useCanvas.circle(new Vector(ww.value / 2, wh.value / 2), 300);
-  // // ctx.fill();
-
-  // ctx.restore();
 
   //  -----------------------------
 
@@ -127,6 +140,19 @@ onMounted(() => {
 onUnmounted(() => {
   closeGui();
 });
+watch(
+  () => name,
+  (val) => {
+    if (val == "Home") {
+      closeGui();
+    } else {
+      initGui();
+    }
+  },
+  {
+    immediate: true,
+  }
+);
 </script>
 
 <style scoped></style>

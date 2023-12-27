@@ -68,7 +68,6 @@ const getItemPath = (name) => {
 
 <style scoped>
 .galleryItem {
-  @apply basis-1/3 px-2 mb-6 shadow-lg;
+  @apply px-2 mb-6 shadow-lg w-[200px] aspect-square  mx-auto overflow-hidden;
 }
 </style>
-g

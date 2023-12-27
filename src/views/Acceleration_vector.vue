@@ -80,7 +80,6 @@ onMounted(() => {
   setInterval(update, 1000 / 30);
 });
 onUnmounted(() => {
-  console.log("un");
   clearInterval(update);
   _useBall.closeGui();
 });
